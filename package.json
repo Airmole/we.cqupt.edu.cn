@@ -1,0 +1,27 @@
+{
+  "name": "we.cqupt.edu.cn",
+  "version": "1.0.0",
+  "description": "We重邮 - 官方网站",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack -p",
+    "clean": "rm index.html && rm -rf dist",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lanshan-studio/we.cqupt.edu.cn.git"
+  },
+  "author": "蓝山工作室 & Cong Min",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lanshan-studio/we.cqupt.edu.cn/issues"
+  },
+  "homepage": "http://we.cqupt.edu.cn",
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.22.0",
+    "webpack": "^1.13.2"
+  }
+}
