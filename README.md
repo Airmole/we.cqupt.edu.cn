@@ -33,7 +33,14 @@ $ npm install
 ```
 
 ### 2、开发
+
 `doing something`
+
+#### 监听打包调试
+```
+$ npm run watch       // 即  webpack -p -w
+```
+
 
 ### 3、webpack重新打包
 
