@@ -36,6 +36,10 @@ body {
         font-weight: bold;
         letter-spacing: 3px;
     }
+    @media screen and (max-width:750px) {
+        top: 15px;
+        left: 20px;
+    }
 }
 .footer{
     position: fixed;
