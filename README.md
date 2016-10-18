@@ -49,6 +49,8 @@ $ npm run build       // 即 webpack -p
 $ npm run clean       // 即 rm index.html && rm -rf dist
 ```
 
+> 更多详见：https://github.com/mcc108/webpack-init
+
 ---
 
 @ [蓝山工作室](https://lanshan.studio) & [Cong Min](https://congm.in)
