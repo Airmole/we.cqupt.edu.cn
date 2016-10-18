@@ -7,29 +7,17 @@ We重邮 - 官网网站
 
 ## 开发
 
-#### 0、npm切换官方源
-
+#### 0、安装`cnpm`
+       
 ```
-$ sudo npm install nrm -g --registry=https://registry.npm.taobao.org
-$ nrm ls
-
-* npm -----  https://registry.npmjs.org/
-  cnpm ----  http://r.cnpmjs.org/
-  taobao --  https://registry.npm.taobao.org/
-  ...
-  
-$ nrm test
-  
-  ...
-  
-$ nrm use cnpm
-|| or
-$ nrm use taobao
+// 如果已安装，则跳过该步骤。
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+// 从此你将使用cnpm代替npm
 ```
 
 ### 1、安装`node_modules`，可直接运行
 ```
-$ npm install
+$ cnpm install
 ```
 
 ### 2、开发
