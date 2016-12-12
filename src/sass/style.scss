@@ -89,12 +89,24 @@ body {
     margin: 0 auto;
     cursor: pointer;
     transition: all .25s ease-in-out;
+    .testing{
+        display: inline;
+    }
+    .loading{
+        display: none;
+    }
     &:hover{
         padding: 8px 20px 6px;
         color: $green;
         background: #fff;
         border: 1px solid #fff;
         border-bottom: 3px solid #d7d7d7;
+        .testing{
+            display: none;
+        }
+        .loading{
+            display: inline;
+        }
     }
 }
 
