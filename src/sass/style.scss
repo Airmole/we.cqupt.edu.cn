@@ -70,11 +70,18 @@ body {
     width: 80px;
     border-radius: 15px;
     margin-right: 20px;
+    @media screen and (max-width:750px) {
+        height: 65px;
+        width: 65px;
+    }
 }
 .title h1{
     font-family: $font-family-title;
     font-size: 88px;
     text-align: center;
+    @media screen and (max-width:750px) {
+        font-size: 66px;
+    }
 }
 .btn{
     text-decoration: none;
