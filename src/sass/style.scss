@@ -75,12 +75,11 @@ body {
         width: 65px;
     }
 }
-.title h1{
-    font-family: $font-family-title;
-    font-size: 88px;
+.title .text{
+    width: 400px;
     text-align: center;
     @media screen and (max-width:750px) {
-        font-size: 66px;
+        width: 300px;
     }
 }
 .btn{
