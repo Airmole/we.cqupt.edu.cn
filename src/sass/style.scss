@@ -63,23 +63,23 @@ body {
 .title{
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 .logo{
     height: 80px;
     width: 80px;
     border-radius: 15px;
-    margin-right: 20px;
+    margin-right: 5px;
     @media screen and (max-width:750px) {
-        height: 65px;
-        width: 65px;
+        height: 50px;
+        width: 50px;
     }
 }
 .title .text{
     width: 400px;
     text-align: center;
     @media screen and (max-width:750px) {
-        width: 300px;
+        width: 200px;
     }
 }
 .btn{
@@ -95,6 +95,10 @@ body {
     margin: 0 auto;
     cursor: pointer;
     transition: all .25s ease-in-out;
+    @media screen and (max-width:750px) {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
     .testing{
         display: inline;
     }
@@ -112,6 +116,9 @@ body {
         }
         .loading{
             display: inline;
+        }
+        @media screen and (max-width:750px) {
+            padding: 6px 12px 4px;
         }
     }
 }
