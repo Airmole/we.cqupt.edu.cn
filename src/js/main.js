@@ -5,6 +5,10 @@ require('../sass/style.scss');
 var $ = jQuery = require('jquery');
 require('typed.js');
 $(function(){
+    $(".btn").click(function(){
+        $(".btn").toggleClass('active');
+        $(".enter").toggleClass('active');
+    });
     $(".define-text").typed({
         strings: ["微信小程序", "校园移动门户", "搜人利器", "点名神器", "掌上课程表", "考试倒计时", "校园生活助手", "百事通", "期待您的发现"],
         typeSpeed: 100,
