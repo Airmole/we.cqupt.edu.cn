@@ -38,6 +38,10 @@ $(function(){
             box_inner.data('left', left);
         }
     });
+    $.getJSON("https://api.github.com/repos/lanshan-studio/wecqupt", function(res) {
+        $(".github-count").text(res.stargazers_count);
+        $(".github-box").addClass('active');
+    });
 });
 
 /* CNZZ统计 */
