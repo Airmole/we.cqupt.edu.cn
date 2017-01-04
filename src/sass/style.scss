@@ -153,13 +153,15 @@ body {
     z-index: 3;
     left: 0;
     width: 100%;
-    bottom: 0;
-    height: 70px;
+    top: 50%;
+    height: 50%;
+    margin-top: 255px;
     background: $green;
     box-shadow: 0 -13px 26px -13px rgba(66, 66, 66, .3);
     @media screen and (max-width:975px) {
         top: 0;
         height: 100%;
+        margin: 0;
         box-shadow: none;
         background-color: rgba(22, 22, 22, 0.28);
     }
@@ -225,6 +227,9 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    @media screen and (max-height:450px) {
+        margin-bottom: 0;
+    }
 }
 .logo{
     height: 66px;
@@ -236,12 +241,19 @@ body {
         width: 50px;
         margin-right: 5px;
     }
+    @media screen and (max-height:450px) {
+        height: 45px;
+        width: 45px;
+    }
 }
 .title .text{
     height: 90px;
     text-align: center;
     @media screen and (max-width:750px) {
         height: 75px;
+    }
+    @media screen and (max-height:450px) {
+        height: 70px;
     }
 }
 .define {
@@ -254,6 +266,9 @@ body {
         font-size: 40px;
         height: 80px;
         line-height: 80px;
+    }
+    @media screen and (max-height:450px) {
+        margin-bottom: 5px;
     }
 }
 .define .typed-cursor{
@@ -277,6 +292,9 @@ body {
         height: 125px;
         padding: 0 10px;
         box-sizing: border-box;
+    }
+    @media screen and (max-height:450px) {
+        height: 75px;
     }
 }
 .docs-text{
@@ -358,6 +376,11 @@ body {
     width: 250px;
     margin-left: -125px;
     box-shadow: 0 10px 30px rgba(22,22,22,.6);
+    @media screen and (max-height:450px) {
+        top: 16%;
+        width: 200px;
+        margin-left: -100px;
+    }
 }
 .enter.active{
     display: block;
