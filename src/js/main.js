@@ -30,6 +30,14 @@ $(function(){
                 active.removeClass('active');
             }
             next.addClass('active');
+            if(next.is('.docs-img-mark')){
+                $('.enter').addClass('inner');
+                $('.btn').hide();
+            } else {
+                $('.enter').removeClass('inner');
+                $('.btn').show();
+            }
+
             var box_inner = $('.box-inner'),
                 left = box_inner.data('left');
             if(!left || left >= 235*9) { left = 0; }

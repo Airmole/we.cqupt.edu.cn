@@ -304,6 +304,9 @@ body {
         text-indent: 1em;
     }
 }
+.docs-img{
+    height: 100%;
+}
 .docs-text.active{
     display: block;
     opacity: 0;
@@ -375,7 +378,8 @@ body {
     top: 22%;
     width: 250px;
     margin-left: -125px;
-    box-shadow: 0 10px 30px rgba(22,22,22,.6);
+    box-shadow: 0 10px 30px rgba(22,22,22,.5);
+    transition: all 0.25s;
     @media screen and (max-height:450px) {
         top: 16%;
         width: 200px;
@@ -384,6 +388,23 @@ body {
 }
 .enter.active{
     display: block;
+}
+.enter.inner{
+    display: block;
+    position: static;
+    width: auto;
+    height: 200px;
+    margin: 0;
+    margin-top: -100px;
+    box-shadow: 0 5px 15px rgba(22,22,22,.3);
+    @media screen and (max-width:750px) {
+        height: 225px;
+        margin-top: -125px;
+    }
+    @media screen and (max-height:450px) {
+        height: 175px;
+        margin-top: -75px;
+    }
 }
 
 /*typed*/
