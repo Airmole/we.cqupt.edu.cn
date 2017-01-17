@@ -1,9 +1,6 @@
-/* main.js
- * @ Cong Min
+/**
+ * Cong Min @ 蓝山工作室
  */
-require('../sass/style.scss');
-var $ = jQuery = require('jquery');
-require('typed.js');
 $(function(){
     $(".btn").click(function(){
         $(".btn").toggleClass('active');
