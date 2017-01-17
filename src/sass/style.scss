@@ -43,9 +43,12 @@ body {
         top: 25px;
         left: 40px;
         font-size: 18px;
+        display: flex;
+        align-items: center;
         .wx{
-            font-weight: bold;
-            letter-spacing: 3px;
+            width: 17px;
+            height: 17px;
+            margin-right: 7px;
         }
     }
     .github-box{
