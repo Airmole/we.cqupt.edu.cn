@@ -198,7 +198,8 @@
                         splitLine: { show: false }
                     }],
                     series: [{
-                        label: { normal: { position: 'right' }, emphasis: { position: 'right' } }
+                        label: { normal: { position: 'right' }, emphasis: { position: 'right' } },
+                        data: action_list.map(function(e){return e.count}).reverse()
                     }]
                 }
             }]

@@ -75,9 +75,19 @@ $ node app.js
 启动成功，即可`http://localhost:3030/`
 
 ## 部署
-利用`pm2`保持进程
+利用`pm2`守护进程
+##### 启动并命名为we.cqu.pt
 ```
-$ pm2 start app.js
+$ pm2 start app.js --name we.cqu.pt
+```
+##### 重启
+```
+$ pm2 restart we.cqu.pt
+```
+##### 停止&清除
+```
+$ pm2 stop we.cqu.pt
+$ pm2 delete we.cqu.pt
 ```
 `nginx`配置域名代理至`3030`端口即可
 
