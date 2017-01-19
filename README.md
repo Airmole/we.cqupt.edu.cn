@@ -3,12 +3,13 @@ We重邮 - 官网网站
 * 官网网站: https://we.cqu.pt \ http://we.cqupt.edu.cn
 * 微信小程序-代码仓库: https://github.com/lanshan-studio/wecqupt
 
-> 含We重邮官网展示主页`/index`及数据统计大盘`/dashboard`
->
+该项目含We重邮官网展示主页`/home`及数据统计大盘`/dashboard`
+
 > 所用技术栈
-> * 自动化构建工具`gulp`：编译`sass`、压缩静态文件
+> * 自动化构建工具`gulp`：编译`sass` `compass`、压缩静态文件
 > * nodejs框架`express4`：路由、中间件、视图渲染、模板引擎`ejs`
 > * 数据可视化工具`echarts`：大盘展示
+
 ---
 
 ## 项目目录
@@ -65,6 +66,20 @@ $ cnpm install
 ```
 $ npm run rebuild      // 即 gulp clean && gulp build
 ```
+
+### 4、调试部署
+
+```
+$ node app.js
+```
+启动成功，即可`http://localhost:3030/`
+
+## 部署
+利用`pm2`保持进程
+```
+$ pm2 start app.js
+```
+`nginx`配置域名代理至`3030`端口即可
 
 ---
 

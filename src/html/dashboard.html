@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="icon" type="image/png" href="/src/favicon.png">
+    <title>We重邮 - 数据大盘</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+<!--[if IE]><p class="kill-ie">微软都放弃了IE，为啥你却还不放弃？</p><![endif]-->
+<div class="header">
+    <a class="wx-box" href="/">
+        <img class="header-logo" src="/img/logo.png">
+        <img class="header-title" src="/img/title.png">
+    </a>
+    <div class="btns-box">
+        <a class="btn-link" href="/dashboard">
+            <span class="box-tip dashboard-tip">
+                <img class="icon" src="/img/dashboard.png">
+            </span>
+            <span class="box-tip"><%= user.list.days[user.list.days.length-1].days %></span>
+        </a>
+    </div>
+</div>
+<div class="panel-box">
+    <div class="panel">
+        <span class="panel-title">微信用户总量</span>
+        <span class="panel-value"><%= user.total %></span>
+    </div>
+    <div class="panel">
+        <span class="panel-title">校园绑定用户量</span>
+        <span class="panel-value"><%= user.bind %></span>
+    </div>
+    <div class="panel">
+        <span class="panel-title">今日新增绑定</span>
+        <span class="panel-value"><%= user.list.days[user.list.days.length-1].count %></span>
+    </div>
+    <div class="panel">
+        <span class="panel-title">今日活跃用户</span>
+        <span class="panel-value"><%= user.list.active[user.list.active.length-1].count %></span>
+    </div>
+    <div class="panel">
+        <span class="panel-title">接口访问总量</span>
+        <span class="panel-value"><%= visit.total %></span>
+    </div>
+    <div class="panel">
+        <span class="panel-title">今日接口访问量</span>
+        <span class="panel-value"><%= visit.list.days[visit.list.days.length-1].count %></span>
+    </div>
+</div>
+<div class="echarts-box">
+    <div class="echarts" id="echarts-line"></div>
+    <div class="echarts" id="echarts-bar"></div>
+</div>
+<script src="/js/echarts.diy.js"></script>
+<script>
+    (function(){
+        //折线图
+        var echartsLine = echarts.init(document.getElementById('echarts-line'));
+        var lineOption = {
+            legend: {
+                itemWidth: 12,
+                itemHeight: 12,
+                data:[ { name: '当日接口访问量', icon: 'circle' },{ name: '当日绑定用户量', icon: 'roundRect' } ],
+                textStyle: { color: "#ffffff" },
+                selectedMode: 'single',
+                inactiveColor: "rgba(234,234,234,0.75)"
+            },
+            color: [ "rgba(255,255,255,0.85)" ],
+            tooltip : {
+                trigger: 'axis',
+                padding: [5, 10],
+                axisPointer: { lineStyle: { color: "rgba(255,255,255,0.75)", type: 'dashed' } }
+            },
+            grid: { show: false, left: '5%', right: '5%', bottom: '5%' },
+            xAxis: [{
+                type: 'category',
+                axisLine: { show: false, lineStyle: { color: "rgba(255,255,255,0.85)" } },
+                axisTick: { show: false },
+                axisLabel: { show: false },
+                splitLine: { show: false },
+                boundaryGap: false,
+                data: JSON.parse('<%- JSON.stringify(visit.list.days.map(function(e){return e.days;})) %>')
+            }],
+            yAxis: [{
+                type : 'value',
+                axisLine: { show: false, lineStyle: { color: "rgba(255,255,255,0.85)" } },
+                axisTick: { show: false },
+                axisLabel: { show: false },
+                splitLine: { show: false }
+            }],
+            series: [{
+                name: '当日接口访问量',
+                type: 'line',
+                smooth: true,
+                smoothMonotone: 'x',
+                symbol: 'circle',
+                symbolSize: 6,
+                showAllSymbol: true,
+                lineStyle: { normal: { color: 'rgba(255,255,255,0.5)' } },
+                areaStyle: { normal: { color: 'rgba(255,255,255,0.25)' } },
+                label: { normal: { show: true, position: 'top', textStyle: { color: 'rgba(255,255,255,0.85)' } } },
+                data: JSON.parse('<%- JSON.stringify(visit.list.days.map(function(e){return e.count;})) %>')
+            }, {
+                name: '当日绑定用户量',
+                type: 'line',
+                smooth: true,
+                smoothMonotone: 'x',
+                symbol: 'roundRect',
+                symbolSize: 6,
+                showAllSymbol: true,
+                lineStyle: { normal: { color: 'rgba(255,255,255,0.5)' } },
+                areaStyle: { normal: { color: 'rgba(255,255,255,0.25)' } },
+                label: { normal: { show: true, position: 'top', textStyle: { color: 'rgba(255,255,255,0.85)' } } },
+                data: JSON.parse('<%- JSON.stringify(user.list.days.map(function(e){return e.count;})) %>')
+            }]
+        };
+        echartsLine.setOption(lineOption);
+        //条形图
+        var echartsBar = echarts.init(document.getElementById('echarts-bar'));
+        var action_list = JSON.parse('<%- JSON.stringify(visit.list.action) %>');
+        var action_name = { //各接口名简称
+            '登录':'登录', '查询成绩':'成绩', '查询考试安排':'考试', '查询学生信息':'学生查询', '查课表':'课表',
+            '查询一卡通消费记录':'一卡通', '查空教室':'空教室', '绑定用户':'绑定', '查询电费':'电费', '查询学费信息':'学费', '借书查询':'借阅',
+            '查询所有报修记录':'报修列表', '切换绑定用户':'切换绑定', '获取反馈列表':'反馈列表', '查询教学班学生名单':'学生查询', '查看报修记录详情':'报修详情',
+            '反馈':'反馈', '报修':'报修申请'
+        };
+        action_list = action_list.map(function(e){  //处理接口名
+            e.action = action_name[e.action] || e.action;
+            return e;
+        });
+        var barOption = {
+            baseOption: {
+                legend: {
+                    itemWidth: 12,
+                    itemHeight: 12,
+                    data:[ { name: '用户主动访问接口量', icon: 'roundRect' } ],
+                    textStyle: { color: "#ffffff" },
+                    selectedMode: false
+                },
+                color: [ "rgba(255,255,255,0.85)" ],
+                tooltip : {
+                    trigger: 'axis',
+                    padding: [5, 10],
+                    axisPointer: { type: 'shadow', shadowStyle: { color: "rgba(255,255,255,0)" } }
+                },
+                grid: { show: false, left: '5%', right: '5%', bottom: '10%' },
+                xAxis: [{
+                    type: 'category',
+                    axisLine: { show: false, lineStyle: { color: "rgba(255,255,255,0.85)" } },
+                    axisTick: { show: false },
+                    splitLine: { show: false },
+                    axisLabel:{ interval: 0, textStyle: { fontSize: 11 } },
+                    boundaryGap: false,
+                    data: action_list.map(function(e){return e.action})
+                }],
+                yAxis: [{
+                    type : 'value',
+                    axisLine: { show: false, lineStyle: { color: "rgba(255,255,255,0.85)" } },
+                    axisTick: { show: false },
+                    axisLabel: { show: false },
+                    splitLine: { show: false }
+                }],
+                series: [{
+                    name: '用户主动访问接口量',
+                    type: 'bar',
+                    showAllSymbol: true,
+                    itemStyle: { normal: { color: 'rgba(255,255,255,0.25)' }, emphasis: { color: 'rgba(255,255,255,0.7)' } },
+                    label: { normal: { show: true, position: 'top', textStyle: { color: 'rgba(255,255,255,0.85)' } } },
+                    data: action_list.map(function(e){return e.count})
+                }]
+            },
+            media: [{
+                query: {
+                    maxWidth: 720
+                },
+                option: {
+                    grid: {  left:'17%' },
+                    //xy翻转
+                    yAxis: [{
+                        type: 'category',
+                        axisLine: { show: false, lineStyle: { color: "rgba(255,255,255,0.85)" } },
+                        axisTick: { show: false },
+                        splitLine: { show: false },
+                        axisLabel:{ interval: 0, textStyle: { fontSize: 11 } },
+                        boundaryGap: false,
+                        data: action_list.map(function(e){return e.action}).reverse()
+                    }],
+                    xAxis: [{
+                        type : 'value',
+                        position: 'top',
+                        axisLine: { show: false, lineStyle: { color: "rgba(255,255,255,0.85)" } },
+                        axisTick: { show: false },
+                        axisLabel: { show: false },
+                        splitLine: { show: false }
+                    }],
+                    series: [{
+                        label: { normal: { position: 'right' }, emphasis: { position: 'right' } }
+                    }]
+                }
+            }]
+        };
+        echartsBar.setOption(barOption);
+    })();
+    /* CNZZ统计 */
+    (function() {
+        var box = document.createElement("div"),
+                cnzz = document.createElement("script");
+        box.style.display = "none";
+        cnzz.src = "//s1.cnzz.com/z_stat.php?id=1260605208";
+        box.appendChild(cnzz);
+        document.body.appendChild(box);
+    })();
+</script>
+</body>
+</html>

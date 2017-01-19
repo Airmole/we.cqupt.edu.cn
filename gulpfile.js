@@ -54,7 +54,7 @@ gulp.task('img-min', ['js-min'], function () {
         .pipe(gulp.dest('dist'));
 });
 gulp.task("revreplace", ['sass-complie', 'js-min', 'img-min'], function () {
-    return gulp.src("src/html/*")
+    return gulp.src("src/html/*.html")
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest('views'))
         .pipe(revReplace({manifest: gulp.src("dist/hash.json")}))
