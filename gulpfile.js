@@ -42,7 +42,7 @@ gulp.task('js-min', ['sass-complie'], function () {
         .pipe(gulp.dest('dist'));
 });
 gulp.task('img-min', ['js-min'], function () {
-    return gulp.src('src/img/*', {base: 'src'})
+    return gulp.src(['src/favicon.png','src/img/*'], {base: 'src'})
         .pipe(imgmin())
         .pipe(rev())
         .pipe(gulp.dest('dist'))
