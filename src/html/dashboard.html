@@ -21,7 +21,7 @@
             <span class="box-tip dashboard-tip">
                 <img class="icon" src="/img/dashboard.png">
             </span>
-            <span class="box-tip"><%= user.list.days[user.list.days.length-1].days %></span>
+            <span class="box-tip"><%= user.list.active[user.list.days.length-1].days %></span>
         </a>
     </div>
 </div>
@@ -36,7 +36,7 @@
     </div>
     <div class="panel">
         <span class="panel-title">今日新增绑定</span>
-        <span class="panel-value"><%= user.list.days[user.list.days.length-1].count %></span>
+        <span class="panel-value"><%= (user.list.days[user.list.days.length-1].days===user.list.active[user.list.active.length-1].days) ? user.list.days[user.list.days.length-1].count : 0 %></span>
     </div>
     <div class="panel">
         <span class="panel-title">今日活跃用户</span>
